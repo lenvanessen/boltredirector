@@ -44,7 +44,9 @@ class Config extends ParameterBag
      */
     public function getRedirects()
     {
-        return $this->get('redirects');
+        return [
+            $this->get('redirects')
+        ];
     }
 
     /**
@@ -60,7 +62,9 @@ class Config extends ParameterBag
      */
     public function getJits()
     {
-        return $this->get('jits');
+        return [
+            $this->get('jits')
+        ];
     }
 
     /**
@@ -76,7 +80,9 @@ class Config extends ParameterBag
      */
     public function getVariables()
     {
-        return $this->get('variables');
+        return [
+            $this->get('variables')
+        ];
     }
 
     /**

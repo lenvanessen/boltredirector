@@ -106,18 +106,24 @@ class Redirect extends ParameterBag
         }, $path);
 
         // Replace variables with actual data
-        foreach ($this->config->getVariables() as $variable => $data) {
+        $variables = $this->config->getVariables();
+
+        foreach ($variables as $variable => $data) {
             $result = str_replace("{@$variable}", ltrim($data, '/'), $result);
         }
 
+
         // Check for Just In Time replacements and apply where necessary
-        foreach ($this->config->getJits() as $jitReplace => $jitWith) {
+        $jits = $this->config->getJits();
+
+        foreach ($jits as $jitReplace => $jitWith) {
             // Match and replace
             $jitMatcher = "~$jitReplace~i";
             if (preg_match($jitMatcher, $result)) {
                 $result = preg_replace($jitMatcher, trim($jitWith, '/'), $result);
             }
         }
+        
 
         return $result;
     }
